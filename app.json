@@ -1,0 +1,27 @@
+{
+  "id": "5d9a4ccd-9102-42d0-8eab-fb08d414b2c9",
+  "name": "Partial Whse. Shpt.",
+  "publisher": "BC Workshop",
+  "version": "1.0.0.0",
+  "brief": "",
+  "url": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "27.0.0.0",
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 50100
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "16.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
