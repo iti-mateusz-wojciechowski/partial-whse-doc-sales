@@ -4,12 +4,12 @@ pageextension 50001 "Sales Return Order Subform" extends "Sales Return Order Sub
     {
         addafter("Return Qty. to Receive")
         {
-            field("Return Qty. to Receive Whse."; Rec."Return Qty. to Receive (Whse.)")
+            field("Return Qty. to Receive (Whse.)"; Rec."Return Qty. to Receive (Whse.)")
             {
                 ApplicationArea = Warehouse;
                 BlankZero = true;
             }
-            field("Return Qty. to Rec. Wh. (Base)"; Rec."Ret. Qty. to Rec. (Wh.) (Base)")
+            field("Ret. Qty. to Rec. (Wh.) (Base)"; Rec."Ret. Qty. to Rec. (Wh.) (Base)")
             {
                 ApplicationArea = Warehouse;
                 BlankZero = true;

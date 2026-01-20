@@ -4,12 +4,12 @@ pageextension 50000 "Sales Order Subform" extends "Sales Order Subform"
     {
         addafter("Qty. to Ship")
         {
-            field("Qty. to Ship Whse."; Rec."Qty. to Ship (Whse.)")
+            field("Qty. to Ship (Whse.)"; Rec."Qty. to Ship (Whse.)")
             {
                 ApplicationArea = Warehouse;
                 BlankZero = true;
             }
-            field("Qty. to Ship Whse. (Base)"; Rec."Qty. to Ship (Whse.) (Base)")
+            field("Qty. to Ship (Whse.) (Base)"; Rec."Qty. to Ship (Whse.) (Base)")
             {
                 ApplicationArea = Warehouse;
                 BlankZero = true;
