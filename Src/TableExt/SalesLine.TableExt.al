@@ -2,7 +2,7 @@ tableextension 50000 "Sales Line" extends "Sales Line"
 {
     fields
     {
-        field(50000; "Qty. to Ship Whse."; Decimal)
+        field(50000; "Qty. to Ship (Whse.)"; Decimal)
         {
             AccessByPermission = tabledata "Sales Shipment Header" = R;
             Caption = 'Qty. to Ship (Whse.)';
@@ -14,27 +14,27 @@ tableextension 50000 "Sales Line" extends "Sales Line"
             var
                 ErrorInfo: ErrorInfo;
             begin
-                "Qty. to Ship Whse." := UnitOfMeasureManagement.RoundAndValidateQty("Qty. to Ship Whse.", "Qty. Rounding Precision", FieldCaption("Qty. to Ship Whse."));
-                "Qty. to Ship Whse. (Base)" := CalcBaseQty("Qty. to Ship Whse.", FieldCaption("Qty. to Ship Whse."), FieldCaption("Qty. to Ship Whse. (Base)"));
+                "Qty. to Ship (Whse.)" := UnitOfMeasureManagement.RoundAndValidateQty("Qty. to Ship (Whse.)", "Qty. Rounding Precision", FieldCaption("Qty. to Ship (Whse.)"));
+                "Qty. to Ship (Whse.) (Base)" := CalcBaseQty("Qty. to Ship (Whse.)", FieldCaption("Qty. to Ship (Whse.)"), FieldCaption("Qty. to Ship (Whse.) (Base)"));
 
-                if "Qty. to Ship Whse." = 0 then
+                if "Qty. to Ship (Whse.)" = 0 then
                     exit;
 
                 if not RequireWhseShipment() then
-                    Error(RequireWhseShipmentErr, FieldCaption("Qty. to Ship Whse."));
+                    Error(RequireWhseShipmentErr, FieldCaption("Qty. to Ship (Whse.)"));
 
                 if not IsInventoriableItem() then
-                    Error(NonInventoriableItemErr, FieldCaption("Qty. to Ship Whse."));
+                    Error(NonInventoriableItemErr, FieldCaption("Qty. to Ship (Whse.)"));
 
-                if ("Outstanding Quantity" - "Whse. Outstanding Qty.") < "Qty. to Ship Whse." then begin
-                    ErrorInfo.Title := StrSubstNo(NotValidErr, FieldCaption("Qty. to Ship Whse."));
+                if ("Outstanding Quantity" - "Whse. Outstanding Qty.") < "Qty. to Ship (Whse.)" then begin
+                    ErrorInfo.Title := StrSubstNo(NotValidErr, FieldCaption("Qty. to Ship (Whse.)"));
                     ErrorInfo.Message := StrSubstNo(QtyToShipErr, ("Outstanding Quantity" - "Whse. Outstanding Qty."));
                     ErrorInfo.RecordId := RecordId();
                     Error(ErrorInfo);
                 end;
             end;
         }
-        field(50001; "Qty. to Ship Whse. (Base)"; Decimal)
+        field(50001; "Qty. to Ship (Whse.) (Base)"; Decimal)
         {
             AccessByPermission = tabledata "Sales Shipment Header" = R;
             Caption = 'Qty. to Ship (Whse.) (Base)';
@@ -45,43 +45,42 @@ tableextension 50000 "Sales Line" extends "Sales Line"
             trigger OnValidate()
             begin
                 TestField("Qty. per Unit of Measure", 1);
-                Validate("Qty. to Ship Whse.", "Qty. to Ship Whse. (Base)");
+                Validate("Qty. to Ship (Whse.)", "Qty. to Ship (Whse.) (Base)");
             end;
         }
-        field(50002; "Return Qty. to Receive Whse."; Decimal)
+        field(50002; "Return Qty. to Receive (Whse.)"; Decimal)
         {
             AccessByPermission = tabledata "Return Receipt Header" = R;
             Caption = 'Return Qty. to Receive (Whse.)';
             DataClassification = CustomerContent;
             DecimalPlaces = 0 : 5;
             MinValue = 0;
-            ToolTip = 'Specifies the value of the Return Qty. to Receive (Whse.) field.';
 
             trigger OnValidate()
             var
                 ErrorInfo: ErrorInfo;
             begin
-                "Return Qty. to Receive Whse." := UnitOfMeasureManagement.RoundAndValidateQty("Return Qty. to Receive Whse.", "Qty. Rounding Precision", FieldCaption("Return Qty. to Receive Whse."));
-                "Return Qty. to Rec. Wh. (Base)" := CalcBaseQty("Return Qty. to Receive Whse.", FieldCaption("Return Qty. to Receive Whse."), FieldCaption("Return Qty. to Rec. Wh. (Base)"));
+                "Return Qty. to Receive (Whse.)" := UnitOfMeasureManagement.RoundAndValidateQty("Return Qty. to Receive (Whse.)", "Qty. Rounding Precision", FieldCaption("Return Qty. to Receive (Whse.)"));
+                "Ret. Qty. to Rec. (Wh.) (Base)" := CalcBaseQty("Return Qty. to Receive (Whse.)", FieldCaption("Return Qty. to Receive (Whse.)"), FieldCaption("Ret. Qty. to Rec. (Wh.) (Base)"));
 
-                if "Return Qty. to Receive Whse." = 0 then
+                if "Return Qty. to Receive (Whse.)" = 0 then
                     exit;
 
                 if not RequireWhseReceipt() then
-                    Error(RequireWhseReceiptErr, FieldCaption("Return Qty. to Receive Whse."));
+                    Error(RequireWhseReceiptErr, FieldCaption("Return Qty. to Receive (Whse.)"));
 
                 if not Rec.IsInventoriableItem() then
-                    Error(NonInventoriableItemErr, FieldCaption("Return Qty. to Receive Whse."));
+                    Error(NonInventoriableItemErr, FieldCaption("Return Qty. to Receive (Whse.)"));
 
-                if ("Outstanding Quantity" - "Return Whse. Out. Qty.") < "Return Qty. to Receive Whse." then begin
-                    ErrorInfo.Title := StrSubstNo(NotValidErr, FieldCaption("Return Qty. to Receive Whse."));
+                if ("Outstanding Quantity" - "Return Whse. Out. Qty.") < "Return Qty. to Receive (Whse.)" then begin
+                    ErrorInfo.Title := StrSubstNo(NotValidErr, FieldCaption("Return Qty. to Receive (Whse.)"));
                     ErrorInfo.Message := StrSubstNo(QtyToReceiveErr, ("Outstanding Quantity" - "Return Whse. Out. Qty."));
                     ErrorInfo.RecordId := Rec.RecordId();
                     Error(ErrorInfo);
                 end;
             end;
         }
-        field(50003; "Return Qty. to Rec. Wh. (Base)"; Decimal)
+        field(50003; "Ret. Qty. to Rec. (Wh.) (Base)"; Decimal)
         {
             AccessByPermission = tabledata "Return Receipt Header" = R;
             Caption = 'Return Qty. to Receive (Whse.) (Base)';
@@ -92,7 +91,7 @@ tableextension 50000 "Sales Line" extends "Sales Line"
             trigger OnValidate()
             begin
                 TestField("Qty. per Unit of Measure", 1);
-                Validate("Return Qty. to Receive Whse.", "Return Qty. to Rec. Wh. (Base)");
+                Validate("Return Qty. to Receive (Whse.)", "Ret. Qty. to Rec. (Wh.) (Base)");
             end;
         }
         field(50004; "Return Whse. Out. Qty."; Decimal)
@@ -138,13 +137,12 @@ tableextension 50000 "Sales Line" extends "Sales Line"
 
     procedure ClearQtyToShipReceiveWhse()
     begin
-        Rec.Validate("Qty. to Ship Whse.", 0);
-        Rec.Validate("Return Qty. to Receive Whse.", 0);
+        Rec.Validate("Qty. to Ship (Whse.)", 0);
+        Rec.Validate("Return Qty. to Receive (Whse.)", 0);
     end;
 
     procedure InitQtyToShipReceiveWhse()
     var
-        Location: Record Location;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         Math: Codeunit Math;
     begin
@@ -153,20 +151,21 @@ tableextension 50000 "Sales Line" extends "Sales Line"
             SalesReceivablesSetup."Default Quantity to Ship"::Blank:
                 ClearQtyToShipReceiveWhse();
             SalesReceivablesSetup."Default Quantity to Ship"::Remainder:
-                case Rec."Document Type" of
-                    "Sales Document Type"::Order:
-                        begin
-                            Rec.CalcFields("Whse. Outstanding Qty.");
-                            if Location.RequireShipment(Rec."Location Code") and Rec.IsInventoriableItem() then
-                                Rec.Validate("Qty. to Ship Whse.", Math.Max(Rec."Outstanding Quantity" - Rec."Whse. Outstanding Qty.", 0));
-                        end;
-                    "Sales Document Type"::"Return Order":
-                        begin
-                            Rec.CalcFields("Return Whse. Out. Qty. (Base)");
-                            if Location.RequireReceive(Rec."Location Code") and Rec.IsInventoriableItem() then
-                                Rec.Validate("Return Qty. to Receive Whse.", Math.Max(Rec."Outstanding Quantity" - Rec."Return Whse. Out. Qty. (Base)", 0));
-                        end;
-                end;
+                if IsInventoriableItem() then
+                    case Rec."Document Type" of
+                        "Sales Document Type"::Order:
+                            begin
+                                Rec.CalcFields("Whse. Outstanding Qty.");
+                                if RequireWhseShipment() then
+                                    Rec.Validate("Qty. to Ship (Whse.)", Math.Max(Rec."Outstanding Quantity" - Rec."Whse. Outstanding Qty.", 0));
+                            end;
+                        "Sales Document Type"::"Return Order":
+                            begin
+                                Rec.CalcFields("Return Whse. Out. Qty. (Base)");
+                                if RequireWhseReceipt() then
+                                    Rec.Validate("Return Qty. to Receive (Whse.)", Math.Max(Rec."Outstanding Quantity" - Rec."Return Whse. Out. Qty. (Base)", 0));
+                            end;
+                    end;
         end;
     end;
 
