@@ -9,6 +9,7 @@ tableextension 50000 "Sales Line" extends "Sales Line"
             DataClassification = CustomerContent;
             DecimalPlaces = 0 : 5;
             MinValue = 0;
+            ToolTip = 'Specifies the quantity of items that should be transferred to warehouse document.';
 
             trigger OnValidate()
             var
@@ -41,6 +42,7 @@ tableextension 50000 "Sales Line" extends "Sales Line"
             DataClassification = CustomerContent;
             DecimalPlaces = 0 : 5;
             MinValue = 0;
+            ToolTip = 'Specifies the quantity of items that should be transferred to warehouse document in base unit of measure.';
 
             trigger OnValidate()
             begin
@@ -55,6 +57,7 @@ tableextension 50000 "Sales Line" extends "Sales Line"
             DataClassification = CustomerContent;
             DecimalPlaces = 0 : 5;
             MinValue = 0;
+            ToolTip = 'Specifies the quantity of items that should be transferred to warehouse document.';
 
             trigger OnValidate()
             var
@@ -87,6 +90,7 @@ tableextension 50000 "Sales Line" extends "Sales Line"
             DataClassification = CustomerContent;
             DecimalPlaces = 0 : 5;
             MinValue = 0;
+            ToolTip = 'Specifies the quantity of items that should be transferred to warehouse document in base unit of measure.';
 
             trigger OnValidate()
             begin
