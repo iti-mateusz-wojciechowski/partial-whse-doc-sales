@@ -1,4 +1,4 @@
-pageextension 50000 "Sales Order Subform" extends "Sales Order Subform"
+pageextension 50000 "BCW Sales Order Subform" extends "Sales Order Subform"
 {
     layout
     {
@@ -13,6 +13,7 @@ pageextension 50000 "Sales Order Subform" extends "Sales Order Subform"
             {
                 ApplicationArea = Warehouse;
                 BlankZero = true;
+                Visible = false;
             }
         }
     }

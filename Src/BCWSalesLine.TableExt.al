@@ -1,4 +1,4 @@
-tableextension 50000 "Sales Line" extends "Sales Line"
+tableextension 50000 "BCW Sales Line" extends "Sales Line"
 {
     fields
     {
@@ -158,16 +158,14 @@ tableextension 50000 "Sales Line" extends "Sales Line"
                 if IsInventoriableItem() then
                     case Rec."Document Type" of
                         "Sales Document Type"::Order:
-                            begin
+                            if RequireWhseShipment() then begin
                                 Rec.CalcFields("Whse. Outstanding Qty.");
-                                if RequireWhseShipment() then
-                                    Rec.Validate("Qty. to Ship (Whse.)", Math.Max(Rec."Outstanding Quantity" - Rec."Whse. Outstanding Qty.", 0));
+                                Rec.Validate("Qty. to Ship (Whse.)", Math.Max(Rec."Outstanding Quantity" - Rec."Whse. Outstanding Qty.", 0));
                             end;
                         "Sales Document Type"::"Return Order":
-                            begin
+                            if RequireWhseReceipt() then begin
                                 Rec.CalcFields("Return Whse. Out. Qty. (Base)");
-                                if RequireWhseReceipt() then
-                                    Rec.Validate("Return Qty. to Receive (Whse.)", Math.Max(Rec."Outstanding Quantity" - Rec."Return Whse. Out. Qty. (Base)", 0));
+                                Rec.Validate("Return Qty. to Receive (Whse.)", Math.Max(Rec."Outstanding Quantity" - Rec."Return Whse. Out. Qty. (Base)", 0));
                             end;
                     end;
         end;

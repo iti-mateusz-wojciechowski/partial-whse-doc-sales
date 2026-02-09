@@ -1,4 +1,4 @@
-pageextension 50001 "Sales Return Order Subform" extends "Sales Return Order Subform"
+pageextension 50001 "BCW Sales Return Order Subform" extends "Sales Return Order Subform"
 {
     layout
     {
@@ -13,6 +13,7 @@ pageextension 50001 "Sales Return Order Subform" extends "Sales Return Order Sub
             {
                 ApplicationArea = Warehouse;
                 BlankZero = true;
+                Visible = false;
             }
         }
     }

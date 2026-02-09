@@ -1,4 +1,4 @@
-codeunit 50001 "Ev Sales Line"
+codeunit 50001 "BCW Ev Sales Line"
 {
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnAfterInitQtyToShip, '', false, false)]
     local procedure OnAfterInitQtyToShip(var SalesLine: Record "Sales Line")
