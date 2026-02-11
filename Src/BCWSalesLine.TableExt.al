@@ -171,6 +171,15 @@ tableextension 50000 "BCW Sales Line" extends "Sales Line"
         end;
     end;
 
+    procedure InitQtyToShipReceiveWhse(var SalesLine: Record "Sales Line")
+    begin
+        if SalesLine.FindSet() then
+            repeat
+                SalesLine.InitQtyToShipReceiveWhse();
+                SalesLine.Modify(false);
+            until SalesLine.Next() = 0;
+    end;
+
     procedure RequireWhseReceipt(): Boolean
     var
         Location: Record Location;
